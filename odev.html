@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>odev.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="generator" content="SynEdit HTML exporter" />
+<style type="text/css">
+<!--
+body { color: #000000; background-color: #FFFFFF; }
+.cpp1-assembler { color: #0000FF; }
+.cpp1-character { color: #000000; }
+.cpp1-comment { color: #0078D7; font-style: italic; }
+.cpp1-float { color: #800080; }
+.cpp1-hexadecimal { color: #800080; }
+.cpp1-identifier { color: #000000; }
+.cpp1-illegalchar { color: #000000; }
+.cpp1-number { color: #800080; }
+.cpp1-octal { color: #800080; }
+.cpp1-preprocessor { color: #008000; }
+.cpp1-reservedword { color: #000000; font-weight: bold; }
+.cpp1-space { background-color: #FFFFFF; color: #000000; }
+.cpp1-string { color: #0000FF; font-weight: bold; }
+.cpp1-symbol { color: #FF0000; font-weight: bold; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<code><span style="font: 13pt Consolas;"><span class="cpp1-preprocessor">#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+
+</span><span class="cpp1-comment">/*************************************************************************
+	Parametre olarak gelen sayiyi basamaklarina ayirarak char dizisine 
+	yazar ve bu diziyi geri dondurur. Basamaklara ayirmak mod 10 islemi 
+	uygulanarak en dusuk degerlikli basamaktaki rakam elde edilir. Siradaki 
+	basamagin carpanini bulmak icin bir onceki icin basamagin degeri 
+	rasgeleSayi'dan cikartilir. 
+	
+**************************************************************************/
+</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> </span><span class="cpp1-symbol">*</span><span class="cpp1-identifier">sayiyiBasamaklaraAyir</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> rasgeleSayi</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+
+</span><span class="cpp1-space">	</span><span class="cpp1-comment">// Rakamlari basamak degerlerine gore ayristir
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> r1 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> rasgeleSayi </span><span class="cpp1-symbol">%</span><span class="cpp1-space"> </span><span class="cpp1-number">10</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> r2 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-symbol">((</span><span class="cpp1-identifier">rasgeleSayi </span><span class="cpp1-symbol">-</span><span class="cpp1-space"> r1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">/</span><span class="cpp1-space"> </span><span class="cpp1-number">10</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">%</span><span class="cpp1-space"> </span><span class="cpp1-number">10</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> r3 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-symbol">((</span><span class="cpp1-identifier">rasgeleSayi </span><span class="cpp1-symbol">-</span><span class="cpp1-space"> r1 </span><span class="cpp1-symbol">-</span><span class="cpp1-space"> r2 </span><span class="cpp1-symbol">*</span><span class="cpp1-space"> </span><span class="cpp1-number">10</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">/</span><span class="cpp1-space"> </span><span class="cpp1-number">100</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">%</span><span class="cpp1-space"> </span><span class="cpp1-number">10</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> r4 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-symbol">((</span><span class="cpp1-identifier">rasgeleSayi </span><span class="cpp1-symbol">-</span><span class="cpp1-space"> r1 </span><span class="cpp1-symbol">-</span><span class="cpp1-space"> r2 </span><span class="cpp1-symbol">*</span><span class="cpp1-space"> </span><span class="cpp1-number">10</span><span class="cpp1-space"> </span><span class="cpp1-symbol">-</span><span class="cpp1-space"> r3 </span><span class="cpp1-symbol">*</span><span class="cpp1-space"> </span><span class="cpp1-number">100</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">/</span><span class="cpp1-space"> </span><span class="cpp1-number">1000</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">%</span><span class="cpp1-space"> </span><span class="cpp1-number">10</span><span class="cpp1-symbol">;</span><span class="cpp1-space">	
+
+	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">4</span><span class="cpp1-symbol">];
+</span><span class="cpp1-space">	basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">0</span><span class="cpp1-symbol">]</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> r1</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">1</span><span class="cpp1-symbol">]</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> r2</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">2</span><span class="cpp1-symbol">]</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> r3</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">3</span><span class="cpp1-symbol">]</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> r4</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> basamaklar</span><span class="cpp1-symbol">;
+}
+
+</span><span class="cpp1-comment">/***************************************************************************
+  Parametre olarak verilan sayiyi (sayi) char tipli bir diziye 
+  aktararak basamaklarina ayirir ve ardindan kriterleri saglayip saglamadigina 
+  bakar. Sartlar saglaniyorsa baslangicta 0 degerine sahip tumSartlarUygun 
+  char degiskeninin degerini 1 olarak ayarlar ve geri dondurur.
+  
+*****************************************************************************/
+</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> sayiKriterlereUygunMu</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> sayi</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> </span><span class="cpp1-symbol">*</span><span class="cpp1-identifier">basamaklar</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> r1</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> r2</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> r3</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> r4</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">	basamaklar </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> sayiyiBasamaklaraAyir</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">sayi</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	r1 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">0</span><span class="cpp1-symbol">];
+</span><span class="cpp1-space">	r2 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">1</span><span class="cpp1-symbol">];
+</span><span class="cpp1-space">	r3 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">2</span><span class="cpp1-symbol">];
+</span><span class="cpp1-space">	r4 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">3</span><span class="cpp1-symbol">];
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-comment">// Sartlari kontrol et
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> tumSartlarUygun </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-comment">// Ilk rakam 0 olamaz
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">r1 </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">		</span><span class="cpp1-comment">// Hicbir rakam birbirinin ayni olamaz
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">r1 </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> r2 </span><span class="cpp1-symbol">&amp;&amp;</span><span class="cpp1-space"> r1 </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> r3 </span><span class="cpp1-symbol">&amp;&amp;</span><span class="cpp1-space"> r1 </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> r4</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">r2 </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> r3 </span><span class="cpp1-symbol">&amp;&amp;</span><span class="cpp1-space"> r2 </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> r4</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">r3 </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> r4</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">					tumSartlarUygun </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> tumSartlarUygun</span><span class="cpp1-symbol">;
+}
+
+</span><span class="cpp1-comment">/****************************************************************************
+Bu fonksiyon kritelere uygun bir sayi uretir. rand() ile sayi uretmeden once
+srand ile rasgele sayi ureteci karistirilir. Boylece daha rastlantisal 
+degerlerin uretilmesi mumkun olur. Rastlantisalligi artirmak icin kullanilan 
+deger mevcut sistem zamaninin ve bir onceki adimda uretilen rasgele degerin 
+toplami alinarak belirlenmistir.
+
+	// Kriteler:
+	// - 0 ile baslamayacak
+	// - rakamlari birbirinden farkli 4 haneli olacak
+	
+*****************************************************************************/
+</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> sayiUret</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		
+	</span><span class="cpp1-comment">// ******************************
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> rasgeleSayiUret</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> rasgele</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		
+		</span><span class="cpp1-comment">// Rasgele sayi uretecini onyukle	
+</span><span class="cpp1-space">		srand</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">time</span><span class="cpp1-symbol">(</span><span class="cpp1-number">0</span><span class="cpp1-symbol">)+</span><span class="cpp1-identifier">rasgele</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		
+		</span><span class="cpp1-comment">// min=1000, max=9999 araliginda bir sayi uret.
+</span><span class="cpp1-space">		</span><span class="cpp1-comment">// rand() degerini araliga indirgemek icin % modulunu al.
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> rasgeleSayi </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">1000</span><span class="cpp1-space"> </span><span class="cpp1-symbol">+</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">rand</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">%</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-number">9999</span><span class="cpp1-space"> </span><span class="cpp1-symbol">-</span><span class="cpp1-space"> </span><span class="cpp1-number">1000</span><span class="cpp1-space"> </span><span class="cpp1-symbol">+</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">));</span><span class="cpp1-space">		
+		
+		</span><span class="cpp1-comment">// Tum sartlar uygunsa dondur	
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">sayiKriterlereUygunMu</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">rasgeleSayi</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> rasgeleSayi</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		
+		</span><span class="cpp1-comment">// Sartlar saglanmadiysa yeni sayi uret
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">			rasgeleSayiUret</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">rasgeleSayi</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			
+	</span><span class="cpp1-comment">// Recursive rasgele ureteci cagir
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> sayi </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> rasgeleSayiUret</span><span class="cpp1-symbol">(</span><span class="cpp1-number">9999</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> sayi</span><span class="cpp1-symbol">;
+}
+
+</span><span class="cpp1-comment">/*****************************************************************************
+  Kullanicidan bir sayi tahmin ederek giris yapmasini ister.
+  Tahmin edilen sayi kriterlere uygunsa geri dondurulur.
+  Degilse sayiIste_ fonksitonu ozyinelemeli (recursive) olarak yeniden cagrilir.
+	Kriteler:
+	- 0 ile baslamayacak
+	- rakamlari birbirinden farkli 4 haneli olacak
+	
+******************************************************************************/
+</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> sayiIste</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+
+</span><span class="cpp1-space">	</span><span class="cpp1-comment">// ************
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> sayiIste_</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{</span><span class="cpp1-space">	
+		
+		</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> tahmin</span><span class="cpp1-symbol">;</span><span class="cpp1-space">	
+		printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Bir sayi giriniz: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		scanf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%d&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;</span><span class="cpp1-identifier">tahmin</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		
+		</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">sayiKriterlereUygunMu</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">tahmin</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> tahmin</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Girilen sayi kriterlere uygun degil.\n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			sayiIste_</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}</span><span class="cpp1-space">				
+	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> sayiIste_</span><span class="cpp1-symbol">();
+}
+
+</span><span class="cpp1-comment">/********************************************************************************
+  Bilgisayarin tuttugu sayiyi (rasgele) ve oyuncunun tahmin (tahmin) ettigi
+  sayilari basamaklarina ayirarak basamaklari karsilastirir.
+  Iki sayida da ayni degerde olan basamaklar icin arti degiskeninin
+  degerini 1 artitir. Farkli olanlar icin 1 eksiltir ve eksi degiskenine kaydeder.
+  Ozel durum olarak; Eger eksi 4 degerine sahipse &quot;Eslesen kayit yok&quot; mesajini yazar.
+  Diger durumlarda &quot;%d arti, %d eksi&quot; formatinda eslesme durumunu yazar.
+    
+*********************************************************************************/</span><span class="cpp1-space">	
+</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> sayiKontrol</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> rasgele</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> tahmin</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> </span><span class="cpp1-symbol">*</span><span class="cpp1-identifier">r_basamaklar</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> </span><span class="cpp1-symbol">*</span><span class="cpp1-identifier">t_basamaklar</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> 
+	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> arti </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> eksi </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> r1</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> r2</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> r3</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> r4</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	r_basamaklar </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> sayiyiBasamaklaraAyir</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">rasgele</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	r1 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> r_basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">0</span><span class="cpp1-symbol">];
+</span><span class="cpp1-space">	r2 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> r_basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">1</span><span class="cpp1-symbol">];
+</span><span class="cpp1-space">	r3 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> r_basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">2</span><span class="cpp1-symbol">];
+</span><span class="cpp1-space">	r4 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> r_basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">3</span><span class="cpp1-symbol">];
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> t1</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> t2</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> t3</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> t4</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	t_basamaklar </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> sayiyiBasamaklaraAyir</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">tahmin</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	t1 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> r_basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">0</span><span class="cpp1-symbol">];
+</span><span class="cpp1-space">	t2 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> r_basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">1</span><span class="cpp1-symbol">];
+</span><span class="cpp1-space">	t3 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> r_basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">2</span><span class="cpp1-symbol">];
+</span><span class="cpp1-space">	t4 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> r_basamaklar</span><span class="cpp1-symbol">[</span><span class="cpp1-number">3</span><span class="cpp1-symbol">];
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">r1 </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> t1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> arti</span><span class="cpp1-symbol">++;</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> eksi</span><span class="cpp1-symbol">++;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">r2 </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> t2</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> arti</span><span class="cpp1-symbol">++;</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> eksi</span><span class="cpp1-symbol">++;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">r3 </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> t3</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> arti</span><span class="cpp1-symbol">++;</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> eksi</span><span class="cpp1-symbol">++;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">r4 </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> t4</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> arti</span><span class="cpp1-symbol">++;</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> eksi</span><span class="cpp1-symbol">++;
+</span><span class="cpp1-space">		
+	</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">eksi </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">4</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">		printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Eslesen kayit yok.\n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">		printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%d arti, %d eksi\n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> arti</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> eksi</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		
+	</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> arti</span><span class="cpp1-symbol">;</span><span class="cpp1-space">	
+</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-comment">/******************************************************
+ Bu fonksiyon eslesenSayisi 4 ise
+ &quot;Sayi bulundu, tebrikler&quot; mesajini ekrana basar ve
+ geriye 0 dondurur. Aksi halde 1 dondurerek
+ ana dongunun devam etmesini saglar.
+*******************************************************/
+</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> oyunBittimi</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> eslesenSayisi</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">eslesenSayisi </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">4</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Sayi bulundu, tebrikler.\n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">;
+}
+
+</span><span class="cpp1-comment">/*********************************************************************
+	Ana program bir rasgele sayi ureteci ile 
+	dongu icinde calisan 3 alt programdan olusur.
+	Alt programlarin gorevleri sunlardir:
+	
+	- sayiUret: Oyun baslangicinda rakamlari birbirinden 
+		farkli 4 basamakli sayi &uuml;retir.
+		
+	- sayiIste: Kullanicidan sayi ister ve girilen 
+		sayiyi basamaklarina ayirir.
+		
+	- sayiKontrol: Girilen sayi ve tutulan sayi arasinda 
+		karsilastirma yaparak d&ouml;n&uuml;t verir.
+		
+	- oyunBittimi: Kullanicinin dogru sayiyi bulmasi 
+		durumunda oyunun bittigini belirterek programi 
+		bitirir fonksiyondur.
+		
+********************************************************************/
+</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> main</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-comment">// Kullanilacak degiskenleri tanimla
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> rasgele</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> tahmin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> eslesenSayisi</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-comment">// Kriterlere uygun rasgele sayi uret
+</span><span class="cpp1-space">	</span><span class="cpp1-comment">// Kriteler:
+</span><span class="cpp1-space">	</span><span class="cpp1-comment">// - 0 ile baslamayacak
+</span><span class="cpp1-space">	</span><span class="cpp1-comment">// - rakamlari birbirinden farkli 4 haneli olacak
+</span><span class="cpp1-space">	rasgele </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> sayiUret</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-comment">// Donguye basla
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">do</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{</span><span class="cpp1-space">	
+		</span><span class="cpp1-comment">// Oyuncu'dan sayi iste
+</span><span class="cpp1-space">		tahmin </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> sayiIste</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">		
+		</span><span class="cpp1-comment">// Oyuncunun girdigi sayiyi kriterlere uygun mu?
+</span><span class="cpp1-space">		</span><span class="cpp1-comment">// Kriteler:
+</span><span class="cpp1-space">		</span><span class="cpp1-comment">// - 0 ile baslamayacak
+</span><span class="cpp1-space">		</span><span class="cpp1-comment">// - rakamlari birbirinden farkli 4 haneli olacak
+</span><span class="cpp1-space">		eslesenSayisi </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> sayiKontrol</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">rasgele</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> tahmin</span><span class="cpp1-symbol">);</span><span class="cpp1-space">		
+		
+	</span><span class="cpp1-symbol">}</span><span class="cpp1-space"> 
+	</span><span class="cpp1-comment">// Eslesen sayisi tanmsa oyunu bitir
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">oyunBittimi</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">eslesenSayisi</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+}
+</span></span>
+</code></pre>
+</body>
+</html>
